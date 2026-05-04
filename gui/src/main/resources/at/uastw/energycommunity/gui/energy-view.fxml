@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="at.uastw.energycommunity.gui.EnergyController">
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+    <children>
+        <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Current Hour"/>
+        <GridPane hgap="20.0" vgap="6.0">
+            <children>
+                <Label text="Community Pool" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label fx:id="lbCommunityPool" text="--% used" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <Label text="Grid Portion" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label fx:id="lbGridPortion" text="--%" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            </children>
+        </GridPane>
+        <Button mnemonicParsing="false" onAction="#onRefresh" text="refresh"/>
+
+        <Separator/>
+
+        <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Historical Data"/>
+        <GridPane hgap="10.0" vgap="6.0">
+            <children>
+                <Label text="Start" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <DatePicker fx:id="dpStart" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <TextField fx:id="tfStartTime" prefWidth="80.0" promptText="HH:mm" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+
+                <Label text="End" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <DatePicker fx:id="dpEnd" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <TextField fx:id="tfEndTime" prefWidth="80.0" promptText="HH:mm" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            </children>
+        </GridPane>
+        <Button mnemonicParsing="false" onAction="#onShowData" text="show data"/>
+
+        <TableView fx:id="tableHistorical" prefHeight="180.0">
+            <columns>
+                <TableColumn fx:id="colHour" prefWidth="140.0" text="Hour"/>
+                <TableColumn fx:id="colProduced" prefWidth="120.0" text="Community produced"/>
+                <TableColumn fx:id="colUsed" prefWidth="110.0" text="Community used"/>
+                <TableColumn fx:id="colGrid" prefWidth="90.0" text="Grid used"/>
+            </columns>
+        </TableView>
+
+        <Label fx:id="lbStatus" text=""/>
+    </children>
+</VBox>
