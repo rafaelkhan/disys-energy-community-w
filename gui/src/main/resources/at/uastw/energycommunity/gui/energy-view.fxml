@@ -43,6 +43,17 @@
         </GridPane>
         <Button mnemonicParsing="false" onAction="#onShowData" text="show data"/>
 
+        <GridPane hgap="20.0" vgap="6.0">
+            <children>
+                <Label text="Community produced" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label fx:id="lbTotalProduced" text="-- kWh" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <Label text="Community used" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label fx:id="lbTotalUsed" text="-- kWh" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label text="Grid used" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Label fx:id="lbTotalGrid" text="-- kWh" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            </children>
+        </GridPane>
+
         <TableView fx:id="tableHistorical" prefHeight="180.0">
             <columns>
                 <TableColumn fx:id="colHour" prefWidth="140.0" text="Hour"/>

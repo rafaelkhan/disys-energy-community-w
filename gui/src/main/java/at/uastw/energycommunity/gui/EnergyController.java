@@ -27,6 +27,10 @@ public class EnergyController {
     @FXML private DatePicker dpEnd;
     @FXML private TextField tfEndTime;
 
+    @FXML private Label lbTotalProduced;
+    @FXML private Label lbTotalUsed;
+    @FXML private Label lbTotalGrid;
+
     @FXML private TableView<HistoricalUsage> tableHistorical;
     @FXML private TableColumn<HistoricalUsage, String> colHour;
     @FXML private TableColumn<HistoricalUsage, Number> colProduced;
@@ -71,6 +75,14 @@ public class EnergyController {
             LocalDateTime end = LocalDateTime.of(dpEnd.getValue(), parseTime(tfEndTime.getText()));
             List<HistoricalUsage> data = api.getHistorical(start.toString(), end.toString());
             tableHistorical.setItems(FXCollections.observableArrayList(data));
+
+            double totalProduced = data.stream().mapToDouble(HistoricalUsage::getCommunityProduced).sum();
+            double totalUsed = data.stream().mapToDouble(HistoricalUsage::getCommunityUsed).sum();
+            double totalGrid = data.stream().mapToDouble(HistoricalUsage::getGridUsed).sum();
+            lbTotalProduced.setText(String.format("%.3f kWh", totalProduced));
+            lbTotalUsed.setText(String.format("%.3f kWh", totalUsed));
+            lbTotalGrid.setText(String.format("%.3f kWh", totalGrid));
+
             lbStatus.setText("Loaded " + data.size() + " historical entries.");
         } catch (Exception e) {
             lbStatus.setText("Error loading historical data: " + e.getMessage());
