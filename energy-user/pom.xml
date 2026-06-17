@@ -25,7 +25,9 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>2.0.13</version>
+            <!-- must match the slf4j-api version that amqp-client pulls in (1.7.x),
+                 otherwise the binding is not found and slf4j logs a NOP warning -->
+            <version>1.7.36</version>
         </dependency>
     </dependencies>
 
